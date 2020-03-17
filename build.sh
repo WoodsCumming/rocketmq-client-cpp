@@ -412,7 +412,7 @@ BuildRocketMQClient() {
   cmake .. $ROCKETMQ_CMAKE_FLAG
   if [ $verbose -eq 0 ]; then
     echo "build rocketmq without detail log."
-    make -j $cpu_num &> buildclient.txt
+    make -j $cpu_num
   else
     make -j $cpu_num
   fi
