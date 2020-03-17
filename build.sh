@@ -502,6 +502,8 @@ PackageRocketMQStatic() {
     cd ${static_package_dir}
     cp -f ${basepath}/libs/signature/lib/libSignature.a .
     cp -f ${install_lib_dir}/lib/lib*.a .
+    cp -f ${install_lib_dir}/lib64/libcrypto.a .
+    cp -f ${install_lib_dir}/lib64/libssl.a .
     cp -f ${install_lib_dir}/librocketmq.a .
     echo "Md5 Hash RocketMQ Before:"
     md5sum librocketmq.a
