@@ -69,9 +69,9 @@ bool SyncfetchNsAddr(const Url& url_s, std::string& body) {
     // Try each endpoint until we successfully establish a connection.
     tcp::socket socket(io_service);
     boost::system::error_code deadline_ec;
-    check_deadline(&deadline, &socket, deadline_ec);
 
     boost::asio::async_connect(socket, endpoint_iterator, boost::lambda::var(ec) = boost::lambda::_1);
+    check_deadline(&deadline, &socket, deadline_ec);
 
     do {
       io_service.run_one();
@@ -87,7 +87,7 @@ bool SyncfetchNsAddr(const Url& url_s, std::string& body) {
     // allow us to treat all data up until the EOF as the content.
     boost::asio::streambuf request;
     std::ostream request_stream(&request);
-    request_stream << "GET " << url_s.path_ << " HTTP/1.0\r\n";
+    request_stream << "GET " << url_s.path_ << "?" << url_s.query_ << " HTTP/1.0\r\n";
     request_stream << "Host: " << url_s.host_ << "\r\n";
     request_stream << "Accept: */*\r\n";
     request_stream << "Connection: close\r\n\r\n";
